@@ -5,17 +5,11 @@ class Fetcher
   include CommandLineReporter
   attr_accessor :wu, :locations, :weather
 
-  def initialize(api_key)
+  def initialize(api_key, locations)
     self.formatter = 'progress'
     self.wu = Wunderground.new(api_key)
     self.weather = []
-    self.locations = {
-      'Cole Valley'  => 'pws:KCASANFR110',
-      'Bernal'       => 'pws:KCASANFR135',
-      'Mt. Davidson' => 'pws:KCASANFR129',
-      'Potrero'      => 'pws:KCASANFR53',
-      'GG Heights'   => 'pws:KCASANFR46'
-    }
+    self.locations = locations
   end
 
   def fetch_weather!
