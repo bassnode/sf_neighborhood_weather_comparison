@@ -3,6 +3,8 @@ San Francisco Weather Comparison
 A little toy which helps compare the weather of neighborhoods in San Francisco.  Written as a tool to help decide where to live.
 Don't believe the locals - use science!
 
+This could really be used to compare weather *anywhere*, but the impetus was to compare the micro-climates of San Francisco.
+
 
 Setup
 -----
