@@ -6,7 +6,7 @@ Don't believe the locals - use science!
 
 Setup
 -----
-You'll need to sign up for a free developer API account at [Wunderground.com](http://www.wunderground.com/weather/api Wunderground).
+You'll need to sign up for a free developer API account at [Wunderground.com](http://www.wunderground.com/weather/api "Wunderground").
 Paste your key in file named `wu.key`
 
 Run It
