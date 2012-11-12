@@ -13,14 +13,25 @@ class Fetcher
   end
 
   def fetch_weather!
+    tg = ThreadGroup.new
+    mutex = Mutex.new
+
     report do
       locations.each_with_index do |(name, lookup), index|
-        result = wu.conditions_for(lookup)
-        weather << [name, result['current_observation']]
+        t = Thread.new do
+          result = wu.conditions_for(lookup)
+          mutex.synchronize do
+            weather << [name, result['current_observation']]
+          end
 
-        progress
+          progress
+        end
+
+        tg.add(t)
       end
     end
+
+    tg.list.each(&:join)
 
     weather.sort_by!{ |name, data| data['feelslike_f'] }
     weather.reverse!
@@ -42,7 +53,6 @@ class Fetcher
       weather.each do |name, data|
         row do
           column name
-          #column res['observation_location']['city'].split(', ').first
           column data['feelslike_f']
           column data['wind_string']
         end
