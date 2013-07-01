@@ -19,7 +19,8 @@ class Fetcher
     report do
       locations.each_with_index do |(name, lookup), index|
         t = Thread.new do
-          result = wu.conditions_for(lookup)
+          wunderground_location = lookup[0..2] != 'pws' ? "pws:#{lookup}" : lookup
+          result = wu.conditions_for(wunderground_location)
           mutex.synchronize do
             weather << [name, result['current_observation']]
           end
