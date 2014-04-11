@@ -52,7 +52,7 @@ class Fetcher
       end
 
       weather.each do |name, data|
-        row do
+        row :color => 'white' do
           column name
           column data['feelslike_f']
           column data['wind_string']
